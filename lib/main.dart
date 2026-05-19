@@ -22,7 +22,25 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fasum Dimas',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        scaffoldBackgroundColor: Colors.pink[50],
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.pink.shade50,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.pink,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
       home: const AuthWrapper(),
       routes: {
