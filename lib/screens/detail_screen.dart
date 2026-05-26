@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({
@@ -14,46 +12,29 @@ class DetailScreen extends StatefulWidget {
     required this.longitude,
     required this.category,
     required this.heroTag,
-    });
-    final String imageBase64;
-    final String description;
-    final String createdAt;
-    final String fullName;
-    final double latitude;
-    final double longitude;
-    final String category;
-    final String heroTag;
+  });
 
+  final String imageBase64;
+  final String description;
+  final DateTime createdAt;
+  final String fullName;
+  final double latitude;
+  final double longitude;
+  final String category;
+  final String heroTag;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-
   Future<void> openMap() async {
-    final url = Uri.parse(
-      'https://www.google.com/maps/search/?api=1&query=${widget.latitude}
-      ,${widget.longitude}',
-    );
-     final success = await launchUrl(uri, mode: LaunchMode.externalApplication);
-
-     if (!success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Tidak bisa membuka Google Maps')),
-      );
-     }
+    final url = 'https://www.google.com/maps/search/?api=1&query=${widget.latitude},${widget.longitude}';
+    await launch(url);
   }
-   
+
   @override
   Widget build(BuildContext context) {
-
-    final creadAtFormatted = DateFormat
-    (''
-    ).format(DateTime.parse(widget.createdAt),
-    );
     return const Placeholder();
   }
 }
-body: SingleChildScrollView
-
